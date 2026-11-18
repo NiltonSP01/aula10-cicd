@@ -40,7 +40,7 @@ jobs:
           cache: maven
 
       - name: OWASP Dependency-Check (falha com CVSS >= 7)
-        run: mvn -B org.owasp:dependency-check-maven:check -DfailBuildOnCVSS=7
+        run: mvn -B org.owasp:dependency-check-maven:check -DfailBuildOnCVSS=7 -DnvdApiKey=${{ secrets.NVD_API_KEY }}
 
   deploy-staging:
     needs: [build-and-test, dependency-check]
